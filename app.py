@@ -2,7 +2,6 @@ import os
 import sys
 import markdown
 import newsExtract
-import tiktoken
 from datetime import datetime
 from configparser import ConfigParser
 from PyQt6.QtWidgets import (QApplication, QWidget, QLabel, QPushButton, QSlider,
@@ -45,8 +44,7 @@ class ChatGPTThread(QThread):
         # temperature = float('{0:.2f}'.format(self.ai_assistant.temperature.value() / 100))
         # response = self.ai_assistant.chatgpt.send_request(text_string.strip(), temperature=temperature)
 
-        token_count = tiktoken.encoding_for_model("gpt-3.5-turbo")
-        token_used = len(token_count.encode(text_string)) + len(token_count.encode(self.ai_assistant.message_input.toPlainText()))
+        token_used = len(text_string) + len(self.ai_assistant.message_input.toPlainText())
         response = {'usage': token_used, 'content': text_string}
 
         self.clear_input.emit()
