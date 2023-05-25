@@ -221,6 +221,7 @@ class AIAssistant(QWidget):
 
         self.gptResponse = self.chatgpt.send_request(input_request, max_tokens, temperature)['content']
 
+
         # initiate gpt
         self.gpt.start()
         self.gpt.quit()

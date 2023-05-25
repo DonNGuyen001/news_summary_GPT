@@ -19,7 +19,6 @@ class ChatGPT:
                 temperature=temperature,
                 max_tokens=maximum_token,
                 messages=self.messages,
-
             )
             self.messages.append({'role': 'assistant', 'content': response.choices[0].message.content})
             return {'usage': response.usage.total_tokens, 'content': response.choices[0].message.content}
